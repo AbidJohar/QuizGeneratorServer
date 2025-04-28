@@ -14,7 +14,9 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMENI_API_KEY });
 
 // Middleware to parse JSON bodies (required for POST requests)
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*', 
+}));
 
 // _____( validate the prompt method)______
 
@@ -56,7 +58,7 @@ app.post("/generate-mcqs", async (req, res) => {
         contents: `Write a top fifteen most important  MCQS of given topic : ${prompt} with answer and also keep  "#" sign at the end of each mcqs and don't write even this "Okay, here are ten important MCQs about the Sun, written in a simple style and easy to separate", just start it from 1,2 etc. `,
       });
           const result = response.text;
-          console.log(result);
+
           
     return res.status(200).json({
         success:true,
