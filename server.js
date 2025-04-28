@@ -35,7 +35,9 @@ const promptSchema = Joi.object({
 });
 
 
-
+app.get("/", (req,res) => {
+  res.send("API is working");
+})
 
 
 
